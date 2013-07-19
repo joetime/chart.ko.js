@@ -7,10 +7,10 @@ I'm just starting to use this library so I will be adding features as I find the
 
 so far
 =======
-pieChart: creates pie chart from data
-barChart: creates bar chart from data
-lineChart: creates line chart from data
-chart.ko.test.js - some test data (borrowed from Chart.js docs)
+- pieChart: creates pie chart from data
+- barChart: creates bar chart from data
+- lineChart: creates line chart from data
+- chart.ko.test.js - some test data (borrowed from Chart.js docs)
 
 todo
 =====
