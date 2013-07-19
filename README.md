@@ -1,7 +1,9 @@
 chart.ko.js
 ===========
 
-Knockout bindings for Chart.js
+Knockout bindings for Chart.js. Binds simply like so:
+<canvas height="300" width="400" data-bind="pieChart: $root.pieData"></canvas>
+
 
 I'm just starting to use this library so I will be adding features as I find them useful.
 
