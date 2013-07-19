@@ -16,6 +16,7 @@ todo
 =====
 - test/demo page
 - donut and radial charts, etc.
+- refactoring: there's some duplication of code   
 - reasonable defaults for simpler binding data struture
 - - for example, default colors
 - eliminate jquery dependency (not sure if there is one, but I haven't tried it yet)
