@@ -2,8 +2,9 @@
 var chartko = {
     debug: false,
     utils: {
-        log: function (element, valueAccessor, allBindingsAccessor, viewModel, bindingContext) {
+        log: function (chartType, element, valueAccessor, allBindingsAccessor, viewModel, bindingContext) {
             console.log("chart.ko.js:");
+            console.log("chartType: " + chartType);
             console.log(element);
             console.log(valueAccessor);
             console.log(allBindingsAccessor());
@@ -20,7 +21,7 @@ var chartko = {
             var valueUnwrapped = ko.utils.unwrapObservable(value);
             // 2
             var ctx = element.getContext("2d");
-            var options = [];   // would like a way to set these
+            var options = [];   // would like a way to set these dynamically, somehow, someway
             // 3
             if (chartType == "Pie")
                 new Chart(ctx).Pie(valueUnwrapped, options);
@@ -33,7 +34,7 @@ var chartko = {
         update: function (chartType, element, valueAccessor, allBindingsAccessor, viewModel, bindingContext) {
             // debug
             if (chartko.debug)
-                chartko.utils.log(element, valueAccessor, allBindingsAccessor, viewModel, bindingContext);
+                chartko.utils.log(chartType, element, valueAccessor, allBindingsAccessor, viewModel, bindingContext);
 
             chartko.utils.bind(chartType, element, valueAccessor);
         }
