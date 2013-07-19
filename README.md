@@ -6,6 +6,7 @@ Knockout bindings for Chart.js. Binds simply like so:
 var viewModel = function () {
   // note that pieData is an observableArray, 
   // while barData and lineData are just observables
+  // (you can also use non-observable arrays/vars)
   
   pieData: ko.observableArray(testPieChartData),
   barData: ko.observable(testBarChartData),
