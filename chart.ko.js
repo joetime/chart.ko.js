@@ -1,6 +1,6 @@
 
 var chartko = {
-    debug: true,
+    debug: false,
     utils: {
         log: function (element, valueAccessor, allBindingsAccessor, viewModel, bindingContext) {
             console.log("chart.ko.js:");
@@ -28,37 +28,32 @@ var chartko = {
                 new Chart(ctx).Bar(valueUnwrapped, options);
             if (chartType == "Line")
                 new Chart(ctx).Line(valueUnwrapped, options);
+        },
+    
+        update: function (chartType, element, valueAccessor, allBindingsAccessor, viewModel, bindingContext) {
+            // debug
+            if (chartko.debug)
+                chartko.utils.log(element, valueAccessor, allBindingsAccessor, viewModel, bindingContext);
+
+            chartko.utils.bind(chartType, element, valueAccessor);
         }
     }
 };
 
-
 ko.bindingHandlers.pieChart = {
     update: function (element, valueAccessor, allBindingsAccessor, viewModel, bindingContext) {
-        // debug
-        if (chartko.debug)
-            chartko.utils.log(element, valueAccessor, allBindingsAccessor, viewModel, bindingContext);
-
-        chartko.utils.bind("Pie", element, valueAccessor);
+        chartko.utils.update("Pie", element, valueAccessor, allBindingsAccessor, viewModel, bindingContext)
     }
 };
 
 ko.bindingHandlers.barChart = {
     update: function (element, valueAccessor, allBindingsAccessor, viewModel, bindingContext) {
-        // debug
-        if (chartko.debug)
-            chartko.utils.log(element, valueAccessor, allBindingsAccessor, viewModel, bindingContext);
-
-        chartko.utils.bind("Bar", element, valueAccessor);
+        chartko.utils.update("Bar", element, valueAccessor, allBindingsAccessor, viewModel, bindingContext)
     }
 };
 
 ko.bindingHandlers.lineChart = {
     update: function (element, valueAccessor, allBindingsAccessor, viewModel, bindingContext) {
-        // debug
-        if (chartko.debug)
-            chartko.utils.log(element, valueAccessor, allBindingsAccessor, viewModel, bindingContext);
-
-        chartko.utils.bind("Line", element, valueAccessor);
+        chartko.utils.update("Line", element, valueAccessor, allBindingsAccessor, viewModel, bindingContext)
     }
 };
