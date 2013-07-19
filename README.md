@@ -1,7 +1,7 @@
 chart.ko.js
 ===========
 
-Knockout bindings for chart.js
+Knockout bindings for Chart.js
 
 so far
 =======
@@ -18,5 +18,5 @@ todo
 dependencies
 ============
 - knockout.js
-- jquery.js
-- chart.js
+- jQuery.js
+- Chart.js
