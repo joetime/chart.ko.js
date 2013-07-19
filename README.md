@@ -1,15 +1,17 @@
 chart.ko.js
 ===========
 
-Knockout bindings for the delightful [Chart.js](https://github.com/nnnick/Chart.js). Binds simply like so:
+Knockout bindings for the delightful [Chart.js](https://github.com/nnnick/Chart.js). Binds simply:
 
 ````html
 <!-- pie chart -->
-<canvas height="300" width="400" data-bind="pieChart: $root.pieData"></canvas>
+<canvas data-bind="pieChart: pieData"></canvas>
+
 <!-- bar chart -->
-<canvas height="300" width="400" data-bind="barChart: $root.barData"></canvas>
+<canvas data-bind="barChart: barData"></canvas>
+
 <!-- line chart -->
-<canvas height="300" width="400" data-bind="lineChart: $root.lineData"></canvas>
+<canvas data-bind="lineChart: lineData"></canvas>
 ````
 ````javascript
 var viewModel = function () {
@@ -33,6 +35,13 @@ so far
 - lineChart: creates line chart from data
 - chartko - global for utilities and such
 - chart.ko.test.js - some test data (borrowed from Chart.js docs)
+
+interactivity
+=============
+The structure of the data passed to Pie charts is different than that passed to Line and Barcharts, so they behave slightly differently when you change the underlying data.
+For example, you can easily push an array item onto Pie graph, but if you simply want to change a value, you have to make the 'value' of each array item observable.
+I think I will find it easier to create observable templates for each type but for now I am doing it manually.
+
 
 todo
 =====
