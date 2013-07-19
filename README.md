@@ -17,12 +17,10 @@ todo
 - test/demo page
 - donut and radial charts, etc.
 - refactoring: there's some duplication of code   
-- reasonable defaults for simpler binding data struture (for example, default colors)*
+- reasonable defaults for simpler binding data struture (for example, default colors) although this may not belong in the scope of this extension...
 - eliminate jquery dependency (not sure if there is one, but I haven't tried it yet)
-- ability to set chart options, either on the fly or beforehand 
+- ability to set chart options, either on the fly or beforehand
 - hooks for extensions (legend, hover, etc.)
-
-* this may not belong in the scope of this extension...
 
 dependencies
 ============
