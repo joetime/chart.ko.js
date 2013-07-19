@@ -1,101 +1,64 @@
-var chart_ko_debug = true;
 
-ko.bindingHandlers.pieChart = {
-    init: function (element, valueAccessor, allBindingsAccessor, viewModel, bindingContext) {
-        if (chart_ko_debug) {
-            console.log("chart.ko.js - pieChart - init");
-        }
-        // This will be called when the binding is first applied to an element
-        // Set up any initial state, event handlers, etc. here
-    },
-    update: function (element, valueAccessor, allBindingsAccessor, viewModel, bindingContext) {
-        // 1. Unwrap value, so we can use observables or regular arrays
-        // 2. Create a context, set options, bind chart
-        // 3. Log debug info
-
-        //1
-        var value = valueAccessor();
-        var valueUnwrapped = ko.utils.unwrapObservable(value);
-        //2
-        if (chart_ko_debug) {
-            console.log("chart.ko.js - pieChart - update");
+var chartko = {
+    debug: true,
+    utils: {
+        log: function (element, valueAccessor, allBindingsAccessor, viewModel, bindingContext) {
+            console.log("chart.ko.js:");
             console.log(element);
             console.log(valueAccessor);
-            console.log(valueUnwrapped);
             console.log(allBindingsAccessor());
             console.log(viewModel);
             console.log(bindingContext);
+        },
+        bind: function (chartType, element, valueAccessor) {
+            // 1. Unwrap value, so we can use observables or regular arrays
+            // 2. Create a context, set options
+            // 3. Create chart
+
+            // 1
+            var value = valueAccessor();
+            var valueUnwrapped = ko.utils.unwrapObservable(value);
+            // 2
+            var ctx = element.getContext("2d");
+            var options = [];   // would like a way to set these
+            // 3
+            if (chartType == "Pie")
+                new Chart(ctx).Pie(valueUnwrapped, options);
+            if (chartType == "Bar")
+                new Chart(ctx).Bar(valueUnwrapped, options);
+            if (chartType == "Line")
+                new Chart(ctx).Line(valueUnwrapped, options);
         }
-        //3
-        var ctx = element.getContext("2d");
-        var options = [];   // would like a way to set these
-        new Chart(ctx).Pie(valueUnwrapped, options);
+    }
+};
+
+
+ko.bindingHandlers.pieChart = {
+    update: function (element, valueAccessor, allBindingsAccessor, viewModel, bindingContext) {
+        // debug
+        if (chartko.debug)
+            chartko.utils.log(element, valueAccessor, allBindingsAccessor, viewModel, bindingContext);
+
+        chartko.utils.bind("Pie", element, valueAccessor);
     }
 };
 
 ko.bindingHandlers.barChart = {
-    init: function (element, valueAccessor, allBindingsAccessor, viewModel, bindingContext) {
-        if (chart_ko_debug) {
-            console.log("chart.ko.js - barChart - init");
-        }
-        // This will be called when the binding is first applied to an element
-        // Set up any initial state, event handlers, etc. here
-    },
     update: function (element, valueAccessor, allBindingsAccessor, viewModel, bindingContext) {
-        // 1. Unwrap value, so we can use observables or regular arrays
-        // 2. Create a context, set options, bind chart
-        // 3. Log debug info
+        // debug
+        if (chartko.debug)
+            chartko.utils.log(element, valueAccessor, allBindingsAccessor, viewModel, bindingContext);
 
-        //1
-        var value = valueAccessor();
-        var valueUnwrapped = ko.utils.unwrapObservable(value);
-        //2
-        if (chart_ko_debug) {
-            console.log("chart.ko.js - barChart - update");
-            console.log(element);
-            console.log(valueAccessor);
-            console.log(valueUnwrapped);
-            console.log(allBindingsAccessor());
-            console.log(viewModel);
-            console.log(bindingContext);
-        }
-        //3
-        var ctx = element.getContext("2d");
-        var options = [];   // would like a way to set these
-        new Chart(ctx).Bar(valueUnwrapped, options);
+        chartko.utils.bind("Bar", element, valueAccessor);
     }
 };
 
 ko.bindingHandlers.lineChart = {
-    init: function (element, valueAccessor, allBindingsAccessor, viewModel, bindingContext) {
-        if (chart_ko_debug) {
-            console.log("chart.ko.js - lineChart - init");
-        }
-        // This will be called when the binding is first applied to an element
-        // Set up any initial state, event handlers, etc. here
-    },
     update: function (element, valueAccessor, allBindingsAccessor, viewModel, bindingContext) {
+        // debug
+        if (chartko.debug)
+            chartko.utils.log(element, valueAccessor, allBindingsAccessor, viewModel, bindingContext);
 
-        // 1. Unwrap value, so we can use observables or regular arrays
-        // 2. Create a context, set options, bind chart
-        // 3. Log debug info
-
-        //1
-        var value = valueAccessor();
-        var valueUnwrapped = ko.utils.unwrapObservable(value);
-        //2
-        if (chart_ko_debug) {
-            console.log("chart.ko.js - lineChart - update");
-            console.log(element);
-            console.log(valueAccessor);
-            console.log(valueUnwrapped);
-            console.log(allBindingsAccessor());
-            console.log(viewModel);
-            console.log(bindingContext);
-        }
-        //3
-        var ctx = element.getContext("2d");
-        var options = [];   // would like a way to set these
-        new Chart(ctx).Line(valueUnwrapped, options);
+        chartko.utils.bind("Line", element, valueAccessor);
     }
 };
